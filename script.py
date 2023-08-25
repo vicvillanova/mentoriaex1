@@ -29,7 +29,14 @@ for signo in signos['signos']:
     # Altero o ano da data_fim pro mesmo ano de nascimento.
     data_fim = data_fim.replace(year=data_nascimento.year)
 
+    if ((data_inicio.month == 12) and (data_nascimento.month == 1) and (data_nascimento.day <= 20)):
+        data_inicio = data_inicio.replace(year=(data_nascimento.year - 1))
+
+    if ((data_inicio.month == 12) and (data_nascimento.month == 12) and (data_nascimento.day >= 22)):
+        data_fim = data_fim.replace(year=(data_nascimento.year + 1))
+     
     # Verifica se a data de nascimento esta entre a data de inicio e a data fim desse signo.
     if data_inicio <= data_nascimento <= data_fim:
         # se for, mostra na tela o nome do signo
         print('Signo:', signo['nome'])
+        break 
